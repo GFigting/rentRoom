@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+		    <interceptor-stack name="MyStack">
+		        <interceptor-ref name="paramsPrepareParamsStack">
+		            <param name="prepare.alwaysInvokePrepare">false</param>
+		        </interceptor-ref>
+		    </interceptor-stack>
+		</interceptors>
+ 
+		<default-interceptor-ref name="MyStack"/>
+
+		<!-- 定义全局result -->            
+        <global-results>    
+            <!-- 定义名为exception的全局result -->  
+            <result name="exception">/exception.jsp</result>      
+        </global-results>   
+  
+        <!-- 定义全局异常映射 -->   
+        <global-exception-mappings>     
+            <!-- 捕捉到Exception异常(所有异常)时跳转到exception所命名的视图上 -->  
+            <exception-mapping exception="java.lang.Exception" result="exception"/>  
+        </global-exception-mappings>  
+
+		<action name="main_*" class="MainAction" method="{1}">
+			<result name="{1}">/WEB-INF/main/{1}.jsp</result>
+		</action>
+			<!-- +++++++ -->
+		<action name="roomDetail" class="MainAction" method="roomDetail">
+			<result>/WEB-INF/main/detail.jsp</result>
+		</action>
+		
+		<action name="resultSearch" class="MainAction" method="resultSearch">
+			<result>/WEB-INF/main/search.jsp</result>
+		</action>
+		
+		<action name="select" class="MainAction" method="select">
+			<result>/WEB-INF/main/search.jsp</result>
+		</action>
+		
+		<action name="login" class="LoginAction" method="login">
+			<result name="login-fail">/login.jsp</result>	
+			<result name="login-success">/WEB-INF/me/me.jsp</result>
+		</action>
+		
+		<action name="register" class="LoginAction" method="register">
+			<result type="redirect">/login.jsp</result>
+		</action>
+		
+		<action name="logout" class="LoginAction" method="logout">
+			<result>/login.jsp</result>
+		</action>
+		
+		<action name="findback" class="LoginAction" method="findback">
+			<result>/WEB-INF/me/resetPasswd.jsp</result>
+		</action>
+		
+		<action name="resetPasswd" class="LoginAction" method="resetPasswd">
+			<result>/success.jsp</result>
+		</action>
+		
+		<action name="changeName" class="LoginAction" method="changeName">
+			<result>/WEB-INF/me/info.jsp</result>
+		</action>
+		
+		<action name="changeHeadImg" class="LoginAction" method="changeHeadImg">
+		</action>
+		
+		<action name="checkPhone" class="LoginAction" method="checkPhone">
+			<result type="stream" name="checkPhone-success">
+				<param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+			</result>	
+		</action>
+		
+		
+		<action name="upload" class="UploadAction" method="upload">
+<!-- 			<result>/WEB-INF/common/upload.jsp</result> -->
+		</action>
+		
+<!-- 		<action name="user-show" class="UploadAction" method="show"> 
+			<result name="show">/WEB-INF/user/show.jsp</result>
+		</action>-->
+		
+		<action name="user_*" class="UploadAction" method="{1}">
+			<result name="main" type="redirect">/index.jsp</result>
+			<result name="{1}">/WEB-INF/user/{1}.jsp</result>
+		</action>
+		
+		
+		<action name="reflection" class="MeAction" method="reflection">
+			<result>/WEB-INF/me/done.jsp</result>
+		</action>
+		
+		<action name="my_upload" class="MeAction" method="upload">
+			<result name="upload">/WEB-INF/user/upload.jsp</result>
+			<result name="identific">/WEB-INF/user/identific.jsp</result>
+			<result name="toLogin">/login.jsp</result>
+		</action>
+		<action name="my_identific" class="MeAction" method="identific">
+			<result name="identific">/WEB-INF/user/identific.jsp</result>
+			<result name="toLogin">/login.jsp</result>
+		</action>
+		<action name="my_*" class="MeAction" method="{1}">
+			<result name="toLogin">/login.jsp</result>
+			<result name="{1}">/WEB-INF/me/{1}.jsp</result>
+		</action>
+		<action name="owner_registe" class="MeAction" method="owneregis">
+			<result name="main" type="redirect">/index.jsp</result>
+			<result name="toLogin">/login.jsp</result>
+		</action>
+		
+		<action name="nav_*" class="CommonAction" method="{1}">
+			<result name="{1}">/WEB-INF/{1}/{1}.jsp</result>
+		</action>
+<!-- 		<action name="login" class="LoginAction" method="login"> -->
+<!-- 			<result type="stream" name="login-success"> -->
+<!-- 				<param name="contentType">text/html</param> -->
+<!-- 		        <param name="inputName">inputStream</param> -->
+<!-- 			</result>	 -->
+<!-- 		</action> -->
+    </package>
+</struts>

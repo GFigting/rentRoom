@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-21 12:42:17 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="com.studio.rentRoom.beans">
+    <class name="UserLogin" table="USERLOGIN">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <one-to-one name="userInfo" class="UserInfo" property-ref="userLogin"></one-to-one>
+        <one-to-one name="owner" class="Owner" property-ref="userLogin"></one-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-10 18:13:07 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.studio.rentRoom.beans.RoomDetail" table="ROOMDETAIL">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="roomName" type="java.lang.String">
+            <column name="ROOMNAME" />
+        </property>
+        <property name="price" type="float">
+            <column name="PRICE" />
+        </property>
+        <property name="roomType" type="java.lang.String">
+            <column name="ROOMTYPE" />
+        </property>
+        <property name="roomArea" type="float">
+            <column name="ROOMAREA" />
+        </property>
+        <property name="towards" type="java.lang.String">
+            <column name="TOWARDS" />
+        </property>
+        <property name="rentWay" type="java.lang.String">
+            <column name="RENTWAY" />
+        </property>
+        <property name="floor" type="java.lang.String">
+            <column name="FLOOR" />
+        </property>
+        <property name="decoration" type="java.lang.String">
+            <column name="DECORATION" />
+        </property>
+        <property name="facility" type="java.lang.String">
+            <column name="FACILITY" />
+        </property>
+        <property name="pubDate" type="java.util.Date">
+            <column name="PUBDATE" />
+        </property>
+        <property name="location" type="java.lang.String">
+            <column name="LOCATION" />
+        </property>
+        <set name="images" table="IMAGES" inverse="false" lazy="true">
+            <key>
+                <column name="ROOM_ID" />
+            </key>
+            <one-to-many class="com.studio.rentRoom.beans.Images" />
+        </set>
+        <many-to-one name="agents" class="com.studio.rentRoom.beans.Agents" fetch="join">
+            <column name="AGENTS_ID" />
+        </many-to-one>
+        <many-to-one name="owner" class="com.studio.rentRoom.beans.Owner" fetch="join">
+            <column name="OWNER_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

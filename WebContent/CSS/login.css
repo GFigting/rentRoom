@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/*协议按钮*/
+/* .layui-layer-btn .layui-layer-btn0 { */
+/*     border-color: #f3f3f3; */
+/*     background-color: #30404b3b; */
+/*     color: #fff; */
+/* } */
+/* .layui-layer-btn a { */
+/*     margin: 5px 25px 0; */
+/* } */
+
+.register{
+	font-size: 14px
+	
+}
+.findback{
+	margin-left: 0
+}
+

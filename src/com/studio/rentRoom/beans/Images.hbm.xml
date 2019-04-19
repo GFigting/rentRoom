@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-10 18:16:37 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.studio.rentRoom.beans.Images" table="IMAGES">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="imgUrl" type="java.lang.String">
+            <column name="IMGURL" />
+        </property>
+        <many-to-one name="roomDetail" class="com.studio.rentRoom.beans.RoomDetail" fetch="join">
+            <column name="ROOM_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

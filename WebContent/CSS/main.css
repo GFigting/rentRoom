@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.layui-input, .layui-select, .layui-textarea {
+    height: 50px;
+}
+.layui-anim{
+	text-align: center;
+}
